@@ -1,6 +1,7 @@
-package com.validator.Validator.Service;
+package com.validator.Validator.Service.Implementations;
 
 import com.validator.Validator.Enums.JobTitle;
+import com.validator.Validator.Service.IValidatorPersonService;
 import com.validator.Validator.models.Person;
 import org.springframework.stereotype.Service;
 
@@ -10,24 +11,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Service
-public class ValidatorPersonService implements IValidatorPersonService {
+public class ValidatorPersonServiceImp implements IValidatorPersonService {
 
     public boolean validatePerson(Person person) {
-        boolean validation = validateEmail(person.getEmail())
+        return validateEmail(person.getEmail())
                 && validateDateOfBirth(person.getDateOfBirth())
                 && validateJobTitle(person.getJobTitle());
-        if (!validation) {
-            if (!validateEmail(person.getEmail())) {
-                System.out.println("Correo inválido: " + person.getEmail());
-            }
-            if (!validateDateOfBirth(person.getDateOfBirth())) {
-                System.out.println("Fecha de nacimiento inválida: " + person.getDateOfBirth());
-            }
-            if (!validateJobTitle(person.getJobTitle())) {
-                System.out.println("Título de trabajo inválido: " + person.getJobTitle());
-            }
-        }
-        return validation;
     }
 
     public boolean validateEmail(String email) {
@@ -46,7 +35,6 @@ public class ValidatorPersonService implements IValidatorPersonService {
 
     public boolean validateJobTitle(String jobTitle) {
         return Arrays.stream(JobTitle.values())
-                .anyMatch(validJobTitle -> jobTitle.contains(validJobTitle.getLabel()));
+                .anyMatch(validJobTitle -> validJobTitle.getLabel().equals(jobTitle));
     }
-
 }

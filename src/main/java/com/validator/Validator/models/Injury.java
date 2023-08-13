@@ -12,8 +12,7 @@ import lombok.Setter;
 public class Injury {
     private String date;
     private String injuryLocation;
-    private String location;
-    private String Gender;
+    private String gender;
     private String ageGroup;
     private String incidentType;
     private String daysLost;

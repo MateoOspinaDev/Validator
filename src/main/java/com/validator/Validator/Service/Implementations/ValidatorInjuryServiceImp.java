@@ -1,13 +1,14 @@
-package com.validator.Validator.Service;
+package com.validator.Validator.Service.Implementations;
 
 import com.validator.Validator.Enums.ReportType;
+import com.validator.Validator.Service.IValidatorInjuryService;
 import com.validator.Validator.models.Injury;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 
 @Service
-public class ValidatorInjuryService implements IValidatorInjuryService {
+public class ValidatorInjuryServiceImp implements IValidatorInjuryService {
     @Override
     public boolean validateInjury(Injury injury) {
         return validateInjuryLocation(injury.getInjuryLocation())
